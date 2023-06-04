@@ -17,7 +17,7 @@
         <h1>BLOC DE TAREAS</h1>
         <hr class="sm col col-xl-8">
 
-        <div class="col-md-12 col-xl-8 mt-4">
+        <div id="task" class="col-md-12 col-xl-8 mt-4">
             <input id="tareas-in" type="text" class="form-control" aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-sm" placeholder="introduce tarea">
             <select id="select-tareas" class="form-select">
@@ -26,9 +26,9 @@
                 <option value="2">Diario</option>
                 <option value="3">Mensual</option>
             </select>
-            <button type="button" class="btn btn-outline-warning mt-1">Guardar</button>
+            <button id="guardar" type="button" class="btn btn-outline-warning mt-1">Guardar</button>
         </div>
-        <div class="form-floating-sm col-md-12 col-xl-8 mt-3">
+        <div id="filtro" class="form-floating-sm col-md-12 col-xl-8 mt-3">
             <select id="filter-tareas" class="form-select" id="floatingSelect">
                 <option selected>Filter</option>
                 <option value="1">URGENTE</option>
@@ -37,15 +37,18 @@
             </select>
             <input id="find-tarea" type="text" class="form-control" aria-describedby="inputGroup-sizing-sm">
         </div>
-        <ul class="list-group col-xl-8">
-            <li class="list-group-item">An item<button type="button" class="btn btn-outline-danger">Danger</button></li>
-            <li class="list-group-item">A second item<button type="button"
+        <!--  -->
+        <ul id="lista-tareas" class="list-group col-xl-8">
+            <li class="list-group-item">An item<button id="btn1" type="button"
                     class="btn btn-outline-danger">Danger</button></li>
-            <li class="list-group-item">A third item<button type="button" class="btn btn-outline-danger">Danger</button>
+            <li class="list-group-item">A second item<button id="btn2" type="button"
+                    class="btn btn-outline-danger">Danger</button></li>
+            <li class="list-group-item">A third item<button id="btn3" type="button"
+                    class="btn btn-outline-danger">Danger</button>
             </li>
             <li class="list-group-item">A fourth item<button type="button"
                     class="btn btn-outline-danger">Danger</button></li>
-            <li class="list-group-item">And a fifth one<button type="button"
+            <li class="list-group-item">And a fifth one<button id="btn4" type="button"
                     class="btn btn-outline-danger">Danger</button></li>
         </ul>
     </div>
