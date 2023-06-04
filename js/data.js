@@ -1,4 +1,4 @@
-let listaTareas = [
+const listaTareas = [
     {
         idTarea: 1,
         titulo: 'Estudiar Javascript',
