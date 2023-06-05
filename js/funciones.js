@@ -1,8 +1,10 @@
-const sectionTareas = document.querySelector('#printTareas');
+const addTareas = document.querySelector('#addTareas');
+const sectionTareas = document.querySelector('#printTareas')
 const inputTask = document.querySelector('#tareas-in')
-const saveTask = document.querySelector('#guardar');
+const saveTask = document.querySelector('#guardar')
 const selectTask = document.querySelector('#select-tareas')
 let id = 3;
+
 saveTask.addEventListener('click', getDataTask);
 
 
@@ -82,17 +84,13 @@ function getDataTask(event) {
     let guardado = saveTareas(listaTareas, newTarea)
 
     if (guardado === 'tarea guardada') {
-
         printOneTarea(newTarea, sectionTareas)
         id++;
 
         inputTask.value = "";
     } else {
         alert(guardado);
-
     }
-
-
 }
 //primera fx
 
@@ -103,22 +101,13 @@ function printTareas(pLista, pDom) {
 }
 printTareas(listaTareas, sectionTareas);
 
+
+
+
 //filtrar por prioridad
 
-
-/**function filterByPrioridad(pListTareas, pPrioridades) {
-    return pListTareas.filter(tarea => tarea.prioridad.toLowerChase() === pPrioridades.toLowerChase());
-}*/
-function filterByPrioridad(pListTareas, pPrioridades) {
-    const filterList = [];
-
-    for (let tarea of pListTareas) {
-        if (tarea.prioridad.toLowerCase() === pPrioridades.toLowerCase()) {
-            filterList[filterList.length] = tarea;
-        }
-    }
-
-    return filterList;
+function filterTareasbyPrioridades(pTareas, pPrioridades) {
+    return pTareas.filter(tarea => tarea.prioridad.toLowerCase()).includes(pPrioridades.toLowerCase());
 }
 
 const selectFilter = document.querySelector('#filter-tareas');
@@ -126,21 +115,12 @@ selectFilter.addEventListener('change', getPrioridades);
 
 
 function getPrioridades(event) {
-    let listaFiltrada = filterByPrioridad
-        (listaTareas, event.target.value);
-    printTareas(listaFiltrada, sectionTareas)
-}
-
-
-
-const inputFilter = document.querySelector('#find-tarea');
-inputFilter.addEventListener('input', getTitulo);
-
-function getTitulo(event) {
-    let palabraBuscar = event.target.value;
-    let listaFiltrada = filterByWord(listaTareas, palabraBuscar);
+    let listaFiltrada = filterTareasbyPrioridades(listaTareas, event.target.value);
     printTareas(listaFiltrada, sectionTareas);
-
 }
+
+
+//const inputFilter = document.querySelector('#find-tarea');
+//inputFilter.addEventListener('keypress', getSearch);*/
 
 
