@@ -17,7 +17,7 @@ function saveTareas(pList, pTareas) {
     return 'tarea duplicada'
 }
 function deleteItemArray(pId, pList) {
-
+    console.log(pId, pList)
     let posicionBorrar = pList.findIndex(tarea => tarea.id === pId);
     if (posicionBorrar !== -1) {
         pList.splice(posicionBorrar, 1);
@@ -35,21 +35,34 @@ function deleteItem(event) {
 
 
 //fx pintarTareas
+function selectColor(pPrioridades) {
+    switch (pPrioridades) {
+        case 'urgente':
+            return 'bg-danger';
+        case 'diario':
+            return 'bg-info'
+        case 'mensual':
+            return 'bg-secondary'
+    }
+}
+
 
 function printOneTarea(pTarea, pDom) {
     const article = document.createElement('article')
     const ul = document.createElement('ul');
     ul.className = "list-group"
     const li = document.createElement('li');
-    li.className = "list-group-item"
+    li.classList.add("list-group-item", selectColor(pTarea.prioridad))
     li.textContent = pTarea.titulo;
     const button = document.createElement('button');
     button.addEventListener('click', deleteItem)
     button.className = "btn btn-outline-danger";
     button.textContent = 'Eliminar';
-
+    button.dataset.id = pTarea.id
     article.append(ul);
-    ul.append(li, button)
+    li.append(button)
+    ul.append(li)
+
     pDom.appendChild(article);
 
 }
@@ -73,7 +86,7 @@ function getDataTask(event) {
         printOneTarea(newTarea, sectionTareas)
         id++;
 
-        event.target.reset();
+        inputTask.value = "";
     } else {
         alert(guardado);
 

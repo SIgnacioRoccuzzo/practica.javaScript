@@ -7,7 +7,7 @@ const listaTareas = [
     {
         id: 2,
         titulo: 'Dormir',
-        prioridad: 'diaria',
+        prioridad: 'diario',
     },
     {
         id: 3,
