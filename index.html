@@ -14,7 +14,7 @@
 
 <body>
     <header>
-        <section id="addTareas" class="">
+        <section id="addTareas" class="container bg-success-subtle">
             <h1>BLOC DE TAREAS</h1>
             <hr>
             <div id="task" class="mt-4">
@@ -29,9 +29,9 @@
                 <button id="guardar" type="button" class="btn btn-outline-warning mt-1">Guardar</button>
             </div>
             <div class="form-floating-sm mt-3">
-                <select id="filter-tareas" class="form-select">
+                <select id="search-tareas" class="form-select">
                     <option value="" selected>Filter</option>
-                    <option value="urgente">URGENTE</option>
+                    <option value="urgente">Urgente</option>
                     <option value="diario">Diario</option>
                     <option value="mensual">Mensual</option>
                 </select>
@@ -40,20 +40,18 @@
         </section>
     </header>
     <main>
-        <section id="printTareas">
+        <section id="printTareas" class="container bg-success-subtle">
             <!--       <article>
          <ul id="lista-tareas" class="list-group col-xl-8">
                 <li class="list-group-item">An item<button id="btn1" type="button"
                         class="btn btn-outline-danger">Eliminar</button></li>
-            </ul> -->
-            </article>
-
+            </ul> </article>-->
         </section>
 
     </main>
 
-    <footer>
-
+    <footer class="container bg-success-subtle text-center">
+        © 2023 Copyright: TO-DO.com
     </footer>
 
     <script src="./js/funciones.js"></script>

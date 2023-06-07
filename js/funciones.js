@@ -1,23 +1,64 @@
-const addTareas = document.querySelector('#addTareas');
+const sectAddTareas = document.querySelector('#addTareas');
 const sectionTareas = document.querySelector('#printTareas')
-const inputTask = document.querySelector('#tareas-in')
-const saveTask = document.querySelector('#guardar')
-const selectTask = document.querySelector('#select-tareas')
+
+
+
 let id = 3;
 
-saveTask.addEventListener('click', getDataTask);
-
-
-function saveTareas(pList, pTareas) {
-
-    let duplicado = pList.findIndex(tarea => tarea.titulo === pTareas.titulo)
+//GUARDAR TAREAS
+/**function saveTareas(pList, pTareas) {
+    let duplicado = pList.findIndex(tarea => tarea.id === pTareas.id)
     if (duplicado === -1) {
-
         pList.push(pTareas);
         return 'tarea guardada'
     }
     return 'tarea duplicada'
+}*/
+
+const inputTask = document.querySelector('#tareas-in')
+const selectTask = document.querySelector('#select-tareas');
+const saveTask = document.querySelector('#guardar');
+saveTask.addEventListener('click', getDataTask)
+
+
+function getDataTask(event) {
+    event.preventDefault();
+    let tarea = inputTask.value
+    let prioridad = selectTask.value
+    if (inputTask.value != "" && selectTask.value != "") {
+
+        saveTarea(tarea, prioridad)
+
+    } else {
+
+        alert("Hay que rellenar todos los campos, tanto la prioridad como el nombre de la tarea")
+    }
 }
+
+function saveTarea(pTarea, pPrioridad) {
+
+    const newTarea = {
+        id: id,
+        titulo: pTarea,
+        prioridad: pPrioridad
+    }
+    let exist = false;
+    exist = listaTareas.some(tarea => {
+        return tarea.titulo.toLowerCase().includes(pTarea.toLowerCase()) && tarea.prioridad.toLowerCase().includes(pPrioridad.toLowerCase());
+
+    })
+    if (exist != true) {
+        listaTareas.push(newTarea);
+        printOneTarea(newTarea, sectAddTareas)
+        id++;
+        inputTask.value = "";
+    } else {
+        alert("La tarea ya esta en la lista")
+    }
+
+}
+
+//FUNCION BORRAR TAREAS
 function deleteItemArray(pId, pList) {
     console.log(pId, pList)
     let posicionBorrar = pList.findIndex(tarea => tarea.id === pId);
@@ -36,13 +77,13 @@ function deleteItem(event) {
 }
 
 
-//fx pintarTareas
-function selectColor(pPrioridades) {
-    switch (pPrioridades) {
+//SELECCION DE COLORES
+function selectColor(pPrioridad) {
+    switch (pPrioridad) {
         case 'urgente':
             return 'bg-danger';
         case 'diario':
-            return 'bg-info'
+            return 'bg-primary-subtle'
         case 'mensual':
             return 'bg-secondary'
     }
@@ -69,58 +110,48 @@ function printOneTarea(pTarea, pDom) {
 
 }
 
-function getDataTask(event) {
-    event.preventDefault();
-
-    if (inputTask.value === "" || selectTask.value === "") {
-        alert('debes introducir una tarea')
-    }
-    const newTarea = {
-        id: id,
-        titulo: inputTask.value,
-        priorirdad: selectTask.value
-    }
-
-    let guardado = saveTareas(listaTareas, newTarea)
-
-    if (guardado === 'tarea guardada') {
-        printOneTarea(newTarea, sectionTareas)
-        id++;
-
-        inputTask.value = "";
-    } else {
-        alert(guardado);
-    }
-}
-//primera fx
-
-
+//PRINT TAREAS
 function printTareas(pLista, pDom) {
+    sectionTareas.innerHTML = "";
     pLista.forEach(tarea => printOneTarea(tarea, pDom));
 
 }
-printTareas(listaTareas, sectionTareas);
+//printTareas(listaTareas, sectionTareas);
 
+//FILTRAR POR PRIORIDAD
 
-
-
-//filtrar por prioridad
-
-function filterTareasbyPrioridades(pTareas, pPrioridades) {
-    return pTareas.filter(tarea => tarea.prioridad.toLowerCase()).includes(pPrioridades.toLowerCase());
+function filterByPriority(pLista, pPrioridades) {
+    return pLista.filter(tarea => {
+        const prioridad = tarea.prioridad && tarea.prioridad.toString().toLowerCase();
+        return prioridad && prioridad.includes(pPrioridades.toLowerCase());
+    });
 }
 
-const selectFilter = document.querySelector('#filter-tareas');
-selectFilter.addEventListener('change', getPrioridades);
+//FILTRO BUSCADOR POR PRIORIDAD
+const selectFilter = document.querySelector('#search-tareas');
+selectFilter.addEventListener('change', selectPriority);
 
+function selectPriority(event) {
 
-function getPrioridades(event) {
-    let listaFiltrada = filterTareasbyPrioridades(listaTareas, event.target.value);
-    printTareas(listaFiltrada, sectionTareas);
+    let listaFiltrada = filterByPriority(listaTareas, selectFilter.value);
+    printTareas(listaFiltrada, sectAddTareas);
+}
+
+//BUSCADOR POR INPUT
+const inputFilter = document.querySelector('#find-tarea');
+inputFilter.addEventListener('input', getSearch)
+
+function getSearch(event) {
+    let palabraBuscar = event.target.value;
+    let listaFiltrada = filterByWord(listaTareas, palabraBuscar);
+    printTareas(listaFiltrada, sectAddTareas);
+}
+
+function filterByWord(pList, pWord) {
+    return pList.filter(tarea => tarea.titulo.toLowerCase().includes(pWord.toLowerCase()) || tarea.prioridad.toLowerCase().includes(pWord.toLowerCase()))
 }
 
 
-//const inputFilter = document.querySelector('#find-tarea');
-//inputFilter.addEventListener('keypress', getSearch);*/
-
-
+/**function filterByPriority(pLista, pPrioridades) {
+    return pLista.filter(tarea => tarea.prioridad.toLowerCase().includes(pPrioridades.toLowerCase()));
+}*/
