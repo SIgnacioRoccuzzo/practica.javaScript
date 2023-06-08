@@ -1,19 +1,7 @@
 const sectAddTareas = document.querySelector('#addTareas');
 const sectionTareas = document.querySelector('#printTareas')
-
-
-
 let id = 3;
 
-//GUARDAR TAREAS
-/**function saveTareas(pList, pTareas) {
-    let duplicado = pList.findIndex(tarea => tarea.id === pTareas.id)
-    if (duplicado === -1) {
-        pList.push(pTareas);
-        return 'tarea guardada'
-    }
-    return 'tarea duplicada'
-}*/
 
 const inputTask = document.querySelector('#tareas-in')
 const selectTask = document.querySelector('#select-tareas');
@@ -31,7 +19,7 @@ function getDataTask(event) {
 
     } else {
 
-        alert("Hay que rellenar todos los campos, tanto la prioridad como el nombre de la tarea")
+        alert("Hay que rellenar todos los campos")
     }
 }
 
@@ -49,7 +37,7 @@ function saveTarea(pTarea, pPrioridad) {
     })
     if (exist != true) {
         listaTareas.push(newTarea);
-        printOneTarea(newTarea, sectAddTareas)
+        printOneTarea(newTarea, sectionTareas)
         id++;
         inputTask.value = "";
     } else {
@@ -65,7 +53,7 @@ function deleteItemArray(pId, pList) {
     if (posicionBorrar !== -1) {
         pList.splice(posicionBorrar, 1);
     }
-    console.log(pList);
+
 }
 
 function deleteItem(event) {
@@ -83,7 +71,7 @@ function selectColor(pPrioridad) {
         case 'urgente':
             return 'bg-danger';
         case 'diario':
-            return 'bg-primary-subtle'
+            return 'bg-dark-subtle'
         case 'mensual':
             return 'bg-secondary'
     }
@@ -99,7 +87,7 @@ function printOneTarea(pTarea, pDom) {
     li.textContent = pTarea.titulo;
     const button = document.createElement('button');
     button.addEventListener('click', deleteItem)
-    button.className = "btn btn-outline-danger";
+    button.className = "btn btn-outline-dark d-block";
     button.textContent = 'Eliminar';
     button.dataset.id = pTarea.id
     article.append(ul);
@@ -116,42 +104,45 @@ function printTareas(pLista, pDom) {
     pLista.forEach(tarea => printOneTarea(tarea, pDom));
 
 }
-//printTareas(listaTareas, sectionTareas);
+printTareas(listaTareas, sectionTareas);
 
 //FILTRAR POR PRIORIDAD
 
-function filterByPriority(pLista, pPrioridades) {
-    return pLista.filter(tarea => {
-        const prioridad = tarea.prioridad && tarea.prioridad.toString().toLowerCase();
-        return prioridad && prioridad.includes(pPrioridades.toLowerCase());
-    });
+function filterByPriority(pList, pPrioridad) {
+    const filterList = [];
+
+    for (let tarea of pList) {
+        if (tarea.prioridad.toLowerCase().includes(pPrioridad.toLowerCase())) {
+            filterList[filterList.length] = tarea;
+        }
+    }
+    return filterList;
 }
 
 //FILTRO BUSCADOR POR PRIORIDAD
 const selectFilter = document.querySelector('#search-tareas');
-selectFilter.addEventListener('change', selectPriority);
+selectFilter.addEventListener('change', searchPriority);
 
-function selectPriority(event) {
-
-    let listaFiltrada = filterByPriority(listaTareas, selectFilter.value);
-    printTareas(listaFiltrada, sectAddTareas);
+function searchPriority() {
+    const filterList = filterByPriority(listaTareas, selectFilter.value);
+    printTareas(filterList, sectionTareas);
+    selectFilter.value = '';
 }
+
 
 //BUSCADOR POR INPUT
 const inputFilter = document.querySelector('#find-tarea');
-inputFilter.addEventListener('input', getSearch)
+inputFilter.addEventListener('keypress', getSearch)
 
 function getSearch(event) {
     let palabraBuscar = event.target.value;
     let listaFiltrada = filterByWord(listaTareas, palabraBuscar);
-    printTareas(listaFiltrada, sectAddTareas);
+    printTareas(listaFiltrada, sectionTareas);
 }
 
 function filterByWord(pList, pWord) {
+    sectionTareas.innerHTML = ''
     return pList.filter(tarea => tarea.titulo.toLowerCase().includes(pWord.toLowerCase()) || tarea.prioridad.toLowerCase().includes(pWord.toLowerCase()))
 }
 
 
-/**function filterByPriority(pLista, pPrioridades) {
-    return pLista.filter(tarea => tarea.prioridad.toLowerCase().includes(pPrioridades.toLowerCase()));
-}*/
