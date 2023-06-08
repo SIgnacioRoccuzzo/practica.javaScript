@@ -14,33 +14,37 @@
 
 <body>
     <header>
-        <section id="addTareas" class="container bg-success-subtle">
+        <section id="addTareas" class="container col-12 col-md-8  bg-success-subtle">
             <h1>BLOC DE TAREAS</h1>
             <hr>
-            <div id="task" class="mt-4">
+            <div>
                 <input id="tareas-in" type="text" class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-sm" placeholder="introduce tarea">
-                <select id="select-tareas" class="form-select">
-                    <option value="" selected>Select menu</option>
+            </div>
+
+            <div class="mt-4 col-5">
+
+                <select id="select-tareas" class="form-select col-4">
+                    <option value="" selected>Select prioridad</option>
                     <option value="urgente">URGENTE</option>
                     <option value="diario">Diario</option>
                     <option value="mensual">Mensual</option>
                 </select>
                 <button id="guardar" type="button" class="btn btn-outline-warning mt-1">Guardar</button>
             </div>
-            <div class="form-floating-sm mt-3">
+            <div class="form-floating-sm col-5 mt-3">
                 <select id="search-tareas" class="form-select">
-                    <option value="" selected>Filter</option>
+                    <option value="" selected>Filtro prioridad</option>
                     <option value="urgente">Urgente</option>
                     <option value="diario">Diario</option>
                     <option value="mensual">Mensual</option>
                 </select>
-                <input id="find-tarea" type="text" class="form-control" aria-describedby="inputGroup-sizing-sm">
             </div>
+            <input id="find-tarea" type="text" class="form-control" aria-describedby="inputGroup-sizing-sm">
         </section>
     </header>
     <main>
-        <section id="printTareas" class="container bg-success-subtle">
+        <section id="printTareas" class="container col-12 col-md-8 bg-success-subtle">
             <!--       <article>
          <ul id="lista-tareas" class="list-group col-xl-8">
                 <li class="list-group-item">An item<button id="btn1" type="button"
@@ -50,7 +54,7 @@
 
     </main>
 
-    <footer class="container bg-success-subtle text-center">
+    <footer class="container col-md-8 bg-success-subtle text-center">
         © 2023 Copyright: TO-DO.com
     </footer>
 
