@@ -1,6 +1,6 @@
 const sectAddTareas = document.querySelector('#addTareas');
 const sectionTareas = document.querySelector('#printTareas')
-let id = 3;
+let id = 4;
 
 
 const inputTask = document.querySelector('#tareas-in')
@@ -26,7 +26,7 @@ function getDataTask(event) {
 function saveTarea(pTarea, pPrioridad) {
 
     const newTarea = {
-        id: id,
+        id: +id,
         titulo: pTarea,
         prioridad: pPrioridad
     }
@@ -104,7 +104,7 @@ function printTareas(pLista, pDom) {
     pLista.forEach(tarea => printOneTarea(tarea, pDom));
 
 }
-printTareas(listaTareas, sectionTareas);
+//printTareas(listaTareas, sectionTareas);
 
 //FILTRAR POR PRIORIDAD
 
