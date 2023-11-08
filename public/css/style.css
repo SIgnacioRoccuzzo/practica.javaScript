@@ -1,0 +1,214 @@
+@import url(reset.css);
+
+body {
+    background-image: url('https://png.pngtree.com/background/20211217/original/pngtree-to-do-list-student-picture-image_1599884.jpg');
+    font-family: 'Arial', sans-serif;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 800px;
+
+}
+
+.perfil {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 750px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.perfil h1 {
+    color: black;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.perfil span {
+    color: black;
+    letter-spacing: 1px;
+    font-size: 20px;
+
+}
+
+#fecha {
+    font-size: 25px;
+    color: black;
+    padding: 50px 15px 5px 0px;
+    margin-bottom: 30px;
+    animation: colorChange 3s infinite alternate;
+
+}
+
+@keyframes colorChange {
+    0% {
+        color: black;
+
+    }
+
+    100% {
+        color: #f019e5;
+
+    }
+}
+
+#addTareas {
+    margin-bottom: 20px;
+
+}
+
+#tareas-in,
+#select-tareas,
+#guardar,
+#find-tarea,
+#search-tareas {
+    width: 100%;
+    margin: 5px 0;
+}
+
+#select-tareas,
+#search-tareas {
+    width: 100%;
+}
+
+
+.btn {
+    background-color: #b6c344;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+
+.btn:hover {
+    background-color: #FF734F;
+
+}
+
+.search-tareas {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #fb0996;
+    font-weight: bold;
+}
+
+label[for="find-tarea"] {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #fb0996;
+    font-weight: bold;
+
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #24cca8;
+    margin: 20px 0;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+
+    }
+
+    50% {
+        transform: translateY(-5px);
+
+    }
+}
+
+.custom-alert {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #b3294e;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+
+    animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-50%) translateY(-100%);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.tarea-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.tarea-item li {
+    list-style-type: none;
+    display: flex;
+    font-size: 18px;
+    justify-content: space-between;
+    font-weight: bold;
+    align-items: center;
+}
+
+.tarea-item li .fa-trash {
+    font-size: 24px;
+    transition: transform 0.3s;
+
+}
+
+.tarea-item li:hover .fa-trash {
+    transform: rotate(360deg);
+    color: #db8069;
+}
+
+.bg-urgente {
+    background-color: #FFCCCC;
+
+}
+
+.bg-diario {
+    background-color: #E1F5FE;
+
+}
+
+.bg-mensual {
+    background-color: #a4eea3;
+
+}
+
+.bg-default {
+    background-color: #E9E9E9;
+
+}
+
+.btn-eliminar {
+    font-size: 14px;
+    padding: 5px 10px;
+
+}
